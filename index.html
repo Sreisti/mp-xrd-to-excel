@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MP XRD → Excel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Materials Project</p>
+    <h1>XRD → Excel</h1>
+    <p class="subtitle">
+      Convert the "XRD JSON" file downloaded from a
+      <a href="https://legacy.materialsproject.org/" target="_blank" rel="noopener">Materials Project</a>
+      material page into a formatted Excel sheet of 2Θ and hkl values.
+    </p>
+  </header>
+
+  <main>
+    <section class="instructions">
+      <h2>How to get the JSON file</h2>
+      <ol>
+        <li>Open a material's page on <a href="https://legacy.materialsproject.org/" target="_blank" rel="noopener">legacy.materialsproject.org</a>, e.g. <a href="https://legacy.materialsproject.org/materials/mp-492/" target="_blank" rel="noopener">mp-492 (TiN)</a>.</li>
+        <li>Click the <strong>"X-Ray Diffraction"</strong> tab.</li>
+        <li>Pick a radiation source (Cu, Ag, Mo, Fe) if you want a different wavelength.</li>
+        <li>Click the <strong>"XRD JSON"</strong> button above the plot and save the file (e.g. <code>mp-492.json</code>).</li>
+        <li>Drop that file (or several, one per material) below.</li>
+      </ol>
+    </section>
+
+    <section id="dropzone" class="dropzone">
+      <p class="dropzone-title">Drop JSON file(s) here</p>
+      <p class="dropzone-sub">or</p>
+      <button type="button" id="browseBtn" class="btn-browse">Choose files…</button>
+      <input type="file" id="fileInput" accept=".json,application/json" multiple hidden />
+    </section>
+
+    <section id="cards" class="cards"></section>
+
+    <section id="actions" class="actions" hidden>
+      <button id="downloadBtn">Download Excel (.xlsx)</button>
+      <button id="clearBtn" class="secondary">Clear all</button>
+    </section>
+
+    <p id="status" class="status" role="status"></p>
+  </main>
+
+  <footer>
+    <p>
+      Runs entirely in your browser — no files are uploaded anywhere.
+      XRD data courtesy of <a href="https://legacy.materialsproject.org/open" target="_blank" rel="noopener">Materials Project</a> (CC BY 4.0).
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
